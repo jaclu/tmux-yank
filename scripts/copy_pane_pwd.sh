@@ -7,7 +7,7 @@ HELPERS_DIR="$CURRENT_DIR"
 source "${HELPERS_DIR}/helpers.sh"
 
 pane_current_path() {
-    tmux display -p -F "#{pane_current_path}"
+    $TMUX_BIN display -p -F "#{pane_current_path}"
 }
 
 display_notice() {
@@ -22,7 +22,7 @@ main() {
     payload="$(pane_current_path | tr -d '\n')"
     # $copy_command below should not be quoted
     echo "$payload" | $copy_command
-    tmux set-buffer "$payload"
+    $TMUX_BIN set-buffer "$payload"
     display_notice
 }
 main
